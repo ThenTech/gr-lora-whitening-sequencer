@@ -139,28 +139,29 @@ int main(int argc, char *argv[]) {
         const size_t numberOfSeqs = whitening_bits.size();
         uint8_t avg_sequence;
 
-        for (size_t byte = 0u; byte < max_bit_len; ++byte) {
-            size_t count1[8] = { 0u };
-            avg_sequence     = 0u;
+		if (numberOfSeqs)
+			for (size_t byte = 0u; byte < max_bit_len; ++byte) {
+				size_t count1[8] = { 0u };
+				avg_sequence     = 0u;
 
-//            printf("byte %d count 1s:\n", byte);
+//				printf("byte %d count 1s:\n", byte);
 
-            for (std::vector<uint8_t>* white : whitening_bits) {
-//                printf("0x%02X : %s\n", (*white)[byte], std::bitset<8>((*white)[byte]).to_string().c_str());
-                for (size_t i = 0; i < 8; ++i)
-                    count1[i] += ((*white)[byte] & (1 << i)) > 0;
-            }
+				for (std::vector<uint8_t>* white : whitening_bits) {
+//					printf("0x%02X : %s\n", (*white)[byte], std::bitset<8>((*white)[byte]).to_string().c_str());
+					for (size_t i = 0; i < 8; ++i)
+						count1[i] += ((*white)[byte] & (1 << i)) > 0;
+				}
 
-//            printf("       ");
-//            for (int i = 7; i >= 0; --i)
-//                printf("%d, ", count1[i]);
-//            putchar('\n');
+//				printf("       ");
+//				for (int i = 7; i >= 0; --i)
+//				   printf("%d, ", count1[i]);
+//				putchar('\n');
 
-            for (size_t i = 0; i < 8; ++i)
-                avg_sequence |= (count1[i] >= (numberOfSeqs - count1[i])) << i;
+				for (size_t i = 0; i < 8; ++i)
+					avg_sequence |= (count1[i] >= (numberOfSeqs - count1[i])) << i;
 
-            outstring << (byte ? ", " : "") << SysUtils::stringFormat(buff, 20, "0x%02X", avg_sequence);
-        }
+				outstring << (byte ? ", " : "") << SysUtils::stringFormat(buff, 20, "0x%02X", avg_sequence);
+			}
 
         // 4 Return most frequent and write to file
         outstring << "\n};\n";
