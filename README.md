@@ -13,7 +13,7 @@ Usage: lora-whitening-sequencer [-h|-H] [-sf|-SF <uint>] [-hdr]
   -sf,  -SF   <uint>             Set the spreading factor
   -hdr,       --header           Input has header bits
   -i,   -in,  --input  <file>    Specify input csv file with data
-  -o,   -out, --output <file>    Specify output file for appending sequence`
+  -o,   -out, --output <file>    Specify output file for appending sequence
   ````
   
 ### Example:
