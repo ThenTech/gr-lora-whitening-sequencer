@@ -38,7 +38,7 @@ void showUsage(char* _name) {
           << std::setw(name.size() + help_2.size()) << help_2                                 << std::endl << std::endl
           << "  LoRa whitening sequencer expects a csv file with bytes in 0x.. format"        << std::endl
           << "  and will compare the bits of each byte on each row and write the highest"     << std::endl
-          << "  occurring '1's to the specified file."                                        << std::endl << std::endl
+          << "  occuring '1's to the specified file."                                         << std::endl << std::endl
           << "  -h,   -H,   --help             Show this help message"                        << std::endl
           << "  -sf,  -SF   <uint>             Set the spreading factor"                      << std::endl
           << "  -hdr,       --header           Input has header bits"                         << std::endl
@@ -60,7 +60,7 @@ void showUsage(char* _name) {
  *
  *        LoRa whitening sequencer expects a csv file with bytes in 0x.. format
  *        and will compare the bits of each byte on each row and write the highest
- *        occurring '1's to the specified file.
+ *        occuring '1's to the specified file.
  *
  *        -h,   -H,   --help             Show this help message
  *        -sf,  -SF   <uint>             Set the spreading factor
@@ -144,17 +144,17 @@ int main(int argc, char *argv[]) {
                 size_t count1[8] = { 0u };
                 avg_sequence     = 0u;
 
-//                printf("byte %d count 1s:\n", byte);
+//            printf("byte %d count 1s:\n", byte);
 
                 for (std::vector<uint8_t>* white : whitening_bits) {
-//                    printf("0x%02X : %s\n", (*white)[byte], std::bitset<8>((*white)[byte]).to_string().c_str());
+//                printf("0x%02X : %s\n", (*white)[byte], std::bitset<8>((*white)[byte]).to_string().c_str());
                     for (size_t i = 0; i < 8; ++i)
                         count1[i] += ((*white)[byte] & (1 << i)) > 0;
                 }
 
 //                printf("       ");
 //                for (int i = 7; i >= 0; --i)
-//                   printf("%d, ", count1[i]);
+//                    printf("%d, ", count1[i]);
 //                putchar('\n');
 
                 for (size_t i = 0; i < 8; ++i)

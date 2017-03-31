@@ -292,7 +292,7 @@ namespace SysUtils {
      */
     const std::string* readStringFromFile(const std::string filename) {
         std::string *str = new std::string();
-        std::fstream file(filename);
+        std::fstream file(filename, std::fstream::in);
 
         try {
             file.seekg(0, std::ios::end);
@@ -321,7 +321,7 @@ namespace SysUtils {
      *		Throws FileWriteException if the file could not be written properly.
      */
     void writeStringToFile(const std::string filename, const std::string& str) {
-        std::ofstream file(filename);
+        std::ofstream file(filename, std::ofstream::out | std::ofstream::app);
 
         try {
             file << str;
